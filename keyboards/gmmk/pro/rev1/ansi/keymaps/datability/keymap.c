@@ -22,6 +22,8 @@ enum custom_keycodes {
     REPO3,
     REPO4,
     REPO5,
+    REPO7,
+    REPO8,
     CH_ADDR,
     TEST_ALL,
 };
@@ -56,7 +58,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case REPO5:
             if (record->event.pressed) {
+                SEND_STRING("code ~/src/powerhouse-backend/\n");
+            } else {
+            }
+            break;
+        case REPO7:
+            if (record->event.pressed) {
                 SEND_STRING("code ~/src/di-airflow2-test/\n");
+            } else {
+            }
+            break;
+        case REPO8:
+            if (record->event.pressed) {
+                SEND_STRING("code ~/psrc/qmk_firmware/\n");
             } else {
             }
             break;
@@ -112,8 +126,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_MYCM, KC_WHOM,         KC_CALC,              KC_MSEL, KC_MPRV, KC_MNXT, KC_MPLY, KC_MSTP, KC_MUTE, KC_VOLD, KC_VOLU, _______,   _______,          _______,
         _______, _______, _______,         _______,              _______, _______, _______, _______, _______, _______, _______, _______, _______,   KC_DEL,           REPO5,
         _______, RGB_TOG, RGB_VAI,         _______,              _______, _______, _______, _______, _______, _______, _______, _______, _______,   QK_BOOT,          _______,
-        _______, RGB_HUI, RGB_VAD,         _______,              _______, _______, _______, _______, _______, _______, _______, _______,            _______,          _______,
-        _______,          _______,         _______,              _______, _______, _______, NK_TOGG, _______, _______, _______, _______,            _______, RGB_MOD, _______,
+        _______, RGB_HUI, RGB_VAD,         _______,              _______, _______, _______, _______, _______, _______, _______, _______,            _______,          REPO7,
+        _______,          _______,         _______,              _______, _______, _______, NK_TOGG, _______, _______, _______, _______,            _______, RGB_MOD, REPO8,
         _______, _______, _______,                               _______,                            _______, _______, _______, RGB_SPD, RGB_RMOD,  RGB_SPI
     ),
 
