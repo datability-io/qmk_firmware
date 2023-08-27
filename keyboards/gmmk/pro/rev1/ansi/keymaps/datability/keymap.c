@@ -29,6 +29,7 @@ enum custom_keycodes {
     TEST_ALL,
     APP_LIST,
     QUICK_COMMIT,
+    EMPTY_COMMIT,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -107,6 +108,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             } else {
             }
             break;
+        case EMPTY_COMMIT:
+            if (record->event.pressed) {
+                SEND_STRING("git commit -m \"empty commit\" --allow-empty\n");
+            } else {
+            }
+            break;
     }
     return true;
 };
@@ -146,7 +153,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [1] = LAYOUT(
         _______, KC_MYCM, KC_WHOM,         KC_CALC,              KC_MSEL,       KC_MPRV, KC_MNXT, KC_MPLY, KC_MSTP, KC_MUTE, KC_VOLD, KC_VOLU, _______,   _______,          RGB_TOG,
         _______, _______, _______,         _______,              _______,       _______, _______, _______, _______, _______, _______, _______, _______,   KC_DEL,           REPO5,
-        _______, RGB_TOG, RGB_VAI,         _______,              _______,       _______, _______, _______, _______, _______, _______, _______, _______,   QK_BOOT,          REPO6,
+        _______, RGB_TOG, RGB_VAI,         EMPTY_COMMIT,         _______,       _______, _______, _______, _______, _______, _______, _______, _______,   QK_BOOT,          REPO6,
         _______, RGB_HUI, RGB_VAD,         _______,              _______,       _______, _______, _______, _______, _______, _______, _______,            _______,          REPO7,
         _______,          _______,         _______,              QUICK_COMMIT,  _______, _______, NK_TOGG, _______, _______, _______, _______,            _______, RGB_MOD, REPO8,
         _______, _______, _______,                               _______,                             _______, _______, _______, RGB_SPD, RGB_RMOD,  RGB_SPI
